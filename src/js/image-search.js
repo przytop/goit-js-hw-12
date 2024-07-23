@@ -8,7 +8,7 @@ import { fetchPixabay } from './fetch-pixabay';
 import { createGalleryItemMarkup } from './gallery-markup';
 
 const form = document.querySelector('.form');
-const loading = document.querySelector('.loader');
+const loading = document.querySelector('.loading');
 const gallery = document.querySelector('.gallery');
 const more = document.querySelector("button[name='more']");
 
@@ -21,21 +21,23 @@ let page = 1;
 let searchValue = '';
 let totalHits = 0;
 
+function showToast(type, message) {
+  iziToast[type]({
+    message,
+    position: 'topRight',
+  });
+}
+
 function toggleElementVisibility(element, shouldShow) {
-  if (shouldShow) {
-    element.classList.remove('disabled');
-  } else {
-    element.classList.add('disabled');
-  }
+  element.classList.toggle('disabled', !shouldShow); // Disable or enable element - must be disable on start
 }
 
 function handleResponse(response) {
   if (response.hits.length === 0) {
-    iziToast.warning({
-      message:
-        'Sorry, there are no images matching your search query. Please try again!',
-      position: 'topRight',
-    });
+    showToast(
+      'warning',
+      'Sorry, there are no images matching your search query. Please try again!'
+    );
     return;
   }
 
@@ -43,17 +45,15 @@ function handleResponse(response) {
   gallery.insertAdjacentHTML('beforeend', markup);
   page += 1;
 
-  toggleElementVisibility(more, true);
+  toggleElementVisibility(more, gallery.childElementCount < totalHits);
   lightbox.refresh();
 
   if (gallery.childElementCount >= totalHits) {
     toggleElementVisibility(more, false); // Hide the 'Load More' button if all results are displayed
-    iziToast.info({
-      message: "We're sorry, but you've reached the end of search results.",
-      position: 'topRight',
-    });
-  } else {
-    toggleElementVisibility(more, true); // Show the 'Load More' button if more results are available
+    showToast(
+      'info',
+      "We're sorry, but you've reached the end of search results."
+    );
   }
 }
 
@@ -61,11 +61,8 @@ async function handleSearch(evt) {
   evt.preventDefault();
   searchValue = evt.target.search.value.trim();
 
-  if (searchValue === '') {
-    iziToast.error({
-      message: 'Complete the field correctly',
-      position: 'topRight',
-    });
+  if (!searchValue) {
+    showToast('error', 'Complete the field correctly');
     return;
   }
 
@@ -79,10 +76,10 @@ async function handleSearch(evt) {
     totalHits = response.totalHits; // Set the total hits from the response
     handleResponse(response);
   } catch (error) {
-    iziToast.error({
-      message: 'An error occurred while fetching data. Please try again.',
-      position: 'topRight',
-    });
+    showToast(
+      'error',
+      'An error occurred while fetching data. Please try again.'
+    );
     console.error('Error fetching data:', error);
   } finally {
     toggleElementVisibility(loading, false);
@@ -98,18 +95,17 @@ async function loadMore() {
     const response = await fetchPixabay(searchValue, page);
     handleResponse(response);
   } catch (error) {
-    iziToast.error({
-      message: 'An error occurred while fetching data. Please try again.',
-      position: 'topRight',
-    });
+    showToast(
+      'error',
+      'An error occurred while fetching data. Please try again.'
+    );
     console.error('Error fetching data:', error);
   } finally {
     let rect = document.querySelector('.gallery-item').getBoundingClientRect();
     window.scrollBy({
-      top: rect.height * 2, // Scroll down by the 2x height of the element
+      top: rect.height * 3, // Scroll down by the 3x height of the element
       behavior: 'smooth', // Smooth scroll
     });
-
     toggleElementVisibility(loading, false);
   }
 }

@@ -1,13 +1,13 @@
 'use strict';
 
 export function createGalleryItemMarkup({
-  webformatURL,
-  largeImageURL,
-  tags,
-  likes,
-  views,
-  comments,
-  downloads,
+  webformatURL = '',
+  largeImageURL = '',
+  tags = '',
+  likes = 0,
+  views = 0,
+  comments = 0,
+  downloads = 0,
 }) {
   return `
       <li class="gallery-item">

@@ -14,7 +14,7 @@ export async function fetchPixabay(value, page = 1) {
       orientation: 'horizontal',
       safesearch: true,
       page: page,
-      per_page: 40,
+      per_page: 20,
     },
   };
 
@@ -23,6 +23,8 @@ export async function fetchPixabay(value, page = 1) {
     return response.data;
   } catch (error) {
     console.error('Error fetching data from Pixabay:', error);
-    throw error; // Rethrow the error after logging it
+    throw new Error(
+      'Unable to fetch data from Pixabay at this time. Please try again later.'
+    );
   }
 }

@@ -13,6 +13,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin-bottom: 32px;
 }
 
 input[name='search'] {
@@ -103,7 +104,7 @@ button[type='submit']:hover {
   justify-content: center;
   align-items: center;
   gap: 24px;
-  margin: 50px 0;
+  margin-bottom: 32px;
 }
 
 .gallery-item {
@@ -155,13 +156,13 @@ button[type='submit']:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 32px;
 }
 
 .more button {
   width: 125px;
   height: 40px;
   background: #4e75ff;
-  margin-bottom: 32px;
 }
 
 .more button:hover {
