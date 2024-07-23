@@ -31,7 +31,7 @@ function toggleElementVisibility(element, shouldShow) {
 
 function handleResponse(response) {
   if (response.hits.length === 0) {
-    iziToast.error({
+    iziToast.warning({
       message:
         'Sorry, there are no images matching your search query. Please try again!',
       position: 'topRight',
@@ -48,9 +48,9 @@ function handleResponse(response) {
 
   if (gallery.childElementCount >= totalHits) {
     toggleElementVisibility(more, false); // Hide the 'Load More' button if all results are displayed
-    iziToast.warning({
-        message: 'No more results',
-        position: 'topRight',
+    iziToast.info({
+      message: "We're sorry, but you've reached the end of search results.",
+      position: 'topRight',
     });
   } else {
     toggleElementVisibility(more, true); // Show the 'Load More' button if more results are available
@@ -62,7 +62,7 @@ async function handleSearch(evt) {
   searchValue = evt.target.search.value.trim();
 
   if (searchValue === '') {
-    iziToast.warning({
+    iziToast.error({
       message: 'Complete the field correctly',
       position: 'topRight',
     });
@@ -104,6 +104,12 @@ async function loadMore() {
     });
     console.error('Error fetching data:', error);
   } finally {
+    let rect = document.querySelector('.gallery-item').getBoundingClientRect();
+    window.scrollBy({
+      top: rect.height * 2, // Scroll down by the 2x height of the element
+      behavior: 'smooth', // Smooth scroll
+    });
+
     toggleElementVisibility(loading, false);
   }
 }
