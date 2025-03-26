@@ -2,50 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/goit-js-hw-12/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/image-scout/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>goit-js-hw-12</title>
-    
+    <title>Image Scout</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
+      integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..600&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/goit-js-hw-12/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-c493984e.js">
-    <link rel="stylesheet" href="/goit-js-hw-12/assets/vendor-1cd1f9d9.css">
-    <link rel="stylesheet" href="/goit-js-hw-12/assets/index-fda35aa6.css">
+    <script type="module" crossorigin src="/image-scout/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/image-scout/assets/vendor-Cgc9PhsO.js">
+    <link rel="stylesheet" crossorigin href="/image-scout/assets/vendor-Dr4k8ETB.css">
+    <link rel="stylesheet" crossorigin href="/image-scout/assets/index-Di_eYXbd.css">
   </head>
+
   <body>
-
-    <section>
-      <h1>goit-js-hw-12</h1>
-      <!-- Path to images as from index.html file -->
-      <img src="/goit-js-hw-12/assets/javascript-8dac5379.svg" alt="" />
-    </section>
-
-    <!-- Loads the specified .html file -->
-    <section>
-  <form class="form">
-    <input type="text" name="search" placeholder="Search images..." required />
-    <button type="submit">Search</button>
-  </form>
-</section>
-
-<section>
-  <ul class="gallery"></ul>
-</section>
-
-<section class="loading disabled">
-  <span class="loader"></span>
-</section>
-
-<section class="more">
-  <button class="submit disabled" name="more">Load more</button>
-</section>
+    <header class="header">
+  <h1 class="header__title">Image Scout</h1>
+</header>
 
 
-    
+    <main class="image-search">
+  <section class="search">
+    <form class="search__form">
+      <input
+        class="search__input"
+        type="text"
+        name="search"
+        placeholder="Search images..."
+        required
+      />
+      <button class="search__button" type="submit">Search</button>
+    </form>
+  </section>
+
+  <section class="gallery">
+    <ul class="gallery__list"></ul>
+  </section>
+
+  <section class="loader loader--hidden">
+    <span class="loader__spinner"></span>
+  </section>
+
+  <section class="load-more load-more--hidden">
+    <button class="load-more__button">Load more</button>
+  </section>
+</main>
+
+
   </body>
 </html>
