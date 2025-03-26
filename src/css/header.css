@@ -1,0 +1,8 @@
+.header {
+  margin: 24px 0;
+}
+
+.header__title {
+  text-align: center;
+  color: #2b80e2;
+}
