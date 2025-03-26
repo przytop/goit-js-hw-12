@@ -128,7 +128,9 @@ const init = () => {
     const loadMoreButton = document.querySelector(".load-more__button");
     const lightbox = new SimpleLightbox(".gallery a", {
       captionsData: "alt",
-      captionDelay: 250,
+      captionDelay: 500,
+      overlayOpacity: 0.8,
+      spinner: true,
     });
 
     searchForm.addEventListener("submit", (e) =>
