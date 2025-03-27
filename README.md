@@ -1,6 +1,6 @@
 # Image Scout
 
-**Image Scout** is a web-based image search application built using the [Pixabay API](https://pixabay.com/api/). The app allows users to search for images by tags and keywords, dynamically fetching and displaying them in a user-friendly layout.
+**Image Scout** is a web-based image search application built using the [Pixabay API](https://pixabay.com/api/docs/). The app allows users to search for images by tags and keywords, dynamically fetching and displaying them in a user-friendly layout.
 
 This project focuses on modern web development practices with an emphasis on structure, maintainability, and performance. It uses Vite.js for fast bundling and hot-reloading, and the application design follows the BEM (Block Element Modifier) methodology.
 
